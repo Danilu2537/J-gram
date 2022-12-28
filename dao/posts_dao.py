@@ -1,10 +1,11 @@
 import json
+from config import Config
 from dao.classes import Post
 
 
 class PostsDAO:
-    def __init__(self, path):
-        self.path = path
+    def __init__(self):
+        self.path = Config.POSTS_PATH
 
     def load_data(self):
         with open(self.path, "r", encoding='utf-8') as file:
@@ -38,7 +39,7 @@ class PostsDAO:
     def search(self, query):
         posts = []
         for post in self.load_data():
-            if query in post.content:
+            if query.lower() in post.content.lower():
                 posts.append(post)
         return posts
 

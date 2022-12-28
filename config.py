@@ -1,5 +1,6 @@
 class Config:
     DEBUG = True
+    JSON_AS_ASCII = False
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
     BOOKMARKS_PATH = '/data/bookmarks.json'

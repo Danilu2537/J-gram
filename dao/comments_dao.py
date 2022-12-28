@@ -1,10 +1,11 @@
 import json
+from config import Config
 from dao.classes import Comment
 
 
 class CommentsDAO:
-    def __init__(self, path):
-        self.path = path
+    def __init__(self):
+        self.path = Config.COMMENTS_PATH
 
     def load_data(self):
         with open(self.path, "r", encoding='utf-8') as file:
