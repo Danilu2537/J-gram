@@ -34,24 +34,26 @@
             </div>
             <span class="item__username">{{ post.poster_name }}</span>
           </a>
-          <button type="button" class="item__bookmark-btn">
-            <img src="../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-          </button>
+          <a href="/bookmarks/add/{{ post.pk }}">
+                  <button type="button" class="item__bookmark-btn">
+                    <img src="../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+                  </button>
+          </a>
         </div>
         <a href="" class="item__post-link">
           <img src="{{ post.pic }}" alt="" width="348" class="item__post-img">
         </a>
         <div class="item__descr">
           <p class="item__text">
-              {{ post.content }}
+              {{ post.content | safe }}
           </p>
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
-            <p class="item__comments-counter">3 комментария</p>
+            <p class="item__comments-counter">{{ count }} комментария</p>
             <div class="item__counter">
               <img src="../static/img/eye.png" alt="" class="item__counter-icon" width="26">
-              <span class="item__counter-text">1023</span>
+              <span class="item__counter-text">{{ post.views_count }}</span>
             </div>
           </div>
           <div class="item__comments">

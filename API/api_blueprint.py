@@ -11,6 +11,7 @@ formatter_api = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 file_handler_api.setFormatter(formatter_api)
 logger_api.addHandler(file_handler_api)
 
+
 @api_blueprint.route('/api/posts', methods=['GET'])
 def api_posts():
     posts = []

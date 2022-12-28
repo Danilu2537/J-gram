@@ -13,11 +13,17 @@ class PostsDAO:
             posts = []
 
             for post in posts_data:
+                content = []
+                for word in post['content'].split():
+                    if word[0] == '#':
+                        content.append(f'<a href="/tag/{word[1:]}" class="item__tag">{word}</a>')
+                    else:
+                        content.append(word)
                 posts.append(Post(
                     post['poster_name'],
                     post['poster_avatar'],
                     post['pic'],
-                    post['content'],
+                    " ".join(content),
                     post['views_count'],
                     post['likes_count'],
                     post['pk']

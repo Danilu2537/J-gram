@@ -30,7 +30,7 @@ class TestPostsDAO:
     def test_search(self):
         posts = PostsDAO()
         for post in posts.load_data():
-            assert post.content[:4] in posts.search(post.content[:4])[0].content
+            assert post.content[:4].lower() in posts.search(post.content[:4])[0].content.lower()
 
     def test_get_by_pk(self):
         posts = PostsDAO()

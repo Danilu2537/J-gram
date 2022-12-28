@@ -16,9 +16,9 @@
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#skyprogram"></use>
         </svg>
       </a>
-      <a href="/bookmarks.html" class="header__bookmark-btn">
+      <a href="/bookmarks" class="header__bookmark-btn">
         <img src="../static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
-        <span class="header__bookmark-counter">3</span>
+        <span class="header__bookmark-counter">{{ count }}</span>
       </a>
     </div>
   </header>
@@ -45,18 +45,20 @@
             <a href="/posts/{{ post.pk }}" class="item__post-link">
               <img src="{{ post.pic }}" alt="" width="348" class="item__post-img">
             </a>
-            <p class="item__descr">{{ post.content | truncate(50) }}</p>
+            <p class="item__descr">{{ post.content | safe | truncate(100)  }}</p>
             <div class="item__post-info">
               <div class="item__counter">
                 <img src="../static/img/eye.png" alt="" class="item__counter-icon" width="26">
-                <span class="item__counter-text">212</span>
+                <span class="item__counter-text">{{ post.views_count }}</span>
               </div>
             </div>
             <div class="item__post-bottom">
               <a href="/posts/{{ post.pk }}" class="item__btn-more">Подробнее</a>
-              <button type="button" class="item__bookmark-btn">
-                <img src="../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-              </button>
+              <a href="/bookmarks/add/{{ post.pk }}">
+                  <button type="button" class="item__bookmark-btn">
+                    <img src="../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+                  </button>
+              </a>
             </div>
           </div>
       {% endfor %}

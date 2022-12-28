@@ -1,6 +1,4 @@
-import pytest
 from dao.comments_dao import CommentsDAO
-from config import Config
 
 
 class TestCommentsDAO:
