@@ -2,4 +2,5 @@
 /.pytest_cache/
 /venv/
 /logs/api.log
-/logs/app.log
+/logs/app.
+/.idea
