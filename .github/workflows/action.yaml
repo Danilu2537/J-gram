@@ -28,7 +28,7 @@ jobs:
         with:
           host: ${{ secrets.SSRVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
-          password: ${{ sercrets.SERVER_PASSWORD }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           source: "deploy/docker-compose.yaml"
           target: "deploy"
           strip_components: 1
