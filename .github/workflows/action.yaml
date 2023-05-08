@@ -12,3 +12,40 @@ jobs:
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_NAME }} --password-stdin
       - name: Push
         run: docker push ${{ secrets.IMAGE_TAG }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Render config
+        run: |
+          mkdir deploy
+          export IMAGE_TAG=${{ secrets.IMAGE_TAG}}
+          cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
+      - name: SSH Copy
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSRVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ sercrets.SERVER_PASSWORD }}
+          source: "deploy/docker-compose.yaml"
+          target: "deploy"
+          strip_components: 1
+      - name: Run app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSRVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ sercrets.SERVER_PASSWORD }}
+          script: | 
+            cd deploy
+            docker-compose up -d
+            
+            
+            
+            
+            
+            
+            
+            
+            
