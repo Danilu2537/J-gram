@@ -1,5 +1,5 @@
 name: CI
-on: push
+on: merge
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,15 +38,6 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          script: | 
+          script: |
             cd deploy
             docker-compose up -d
-            
-            
-            
-            
-            
-            
-            
-            
-            

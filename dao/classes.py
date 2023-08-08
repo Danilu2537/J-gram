@@ -1,7 +1,9 @@
 class Post:
     """Класс поста с атрибутами"""
-    def __init__(self, poster_name, poster_avatar, pic, content,
-                 views_count, likes_count, pk):
+
+    def __init__(
+        self, poster_name, poster_avatar, pic, content, views_count, likes_count, pk
+    ):
         self.poster_name = poster_name
         self.poster_avatar = poster_avatar
         self.pic = pic
@@ -16,8 +18,8 @@ class Post:
 
 class Comment:
     """Класс комментария с атрибутами"""
-    def __init__(self, post_id, commenter_name,
-                 comment, pk):
+
+    def __init__(self, post_id, commenter_name, comment, pk):
         self.post_id = post_id
         self.commenter_name = commenter_name
         self.comment = comment

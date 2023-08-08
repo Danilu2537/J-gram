@@ -1,4 +1,5 @@
 import json
+
 from config import Config
 from dao.classes import Post
 
@@ -7,8 +8,9 @@ class PostsDAO:
     """
     Класс обработчика постов
     """
+
     def __init__(self):
-        self.path = Config.POSTS_PATH # сохранение пути
+        self.path = Config.POSTS_PATH  # сохранение пути
 
     def load_data(self):
         """
@@ -16,30 +18,34 @@ class PostsDAO:
         Создание списка с обьектами постов, имеющих копию ключей из
         словаря в качестве атрибутов
         """
-        with open(self.path, "r", encoding='utf-8') as file:
+        with open(self.path, "r", encoding="utf-8") as file:
             posts_data = json.load(file)
             posts = []
 
             for post in posts_data:
                 content = []
-                for word in post['content'].split():
+                for word in post["content"].split():
                     """
                     Преобразование тегов производится при создании обьекта поста,
                     Исходный файл не изменяется
                     """
-                    if word[0] == '#':
-                        content.append(f'<a href="/tag/{word[1:]}" class="item__tag">{word}</a>')
+                    if word[0] == "#":
+                        content.append(
+                            f'<a href="/tag/{word[1:]}" class="item__tag">{word}</a>'
+                        )
                     else:
                         content.append(word)
-                posts.append(Post(
-                    post['poster_name'],
-                    post['poster_avatar'],
-                    post['pic'],
-                    " ".join(content),
-                    post['views_count'],
-                    post['likes_count'],
-                    post['pk']
-                ))
+                posts.append(
+                    Post(
+                        post["poster_name"],
+                        post["poster_avatar"],
+                        post["pic"],
+                        " ".join(content),
+                        post["views_count"],
+                        post["likes_count"],
+                        post["pk"],
+                    )
+                )
             return posts
 
     def get_all(self):
