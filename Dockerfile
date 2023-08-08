@@ -14,6 +14,8 @@ RUN poetry config virtualenvs.create false \
 
 COPY . .
 
+RUN mkdir logs
+
 EXPOSE 80
 
 CMD flask run -h 0.0.0.0 -p 80
